@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Yield Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f4;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+           
+            /* Increased margin for spacing */
+        }
+
+        .form-group {
+            flex: 1;
+            margin:20px;
+            /* Increased margin for spacing */
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 30px;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Crop Yield Prediction</h1>
+    
+    <form action="{{url_for('predict_datapoint')}}" method="POST">
+
+        <!-- First Row -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="N">Nitrogen:</label>
+                <input type="text" id="N" name="N" placeholder="Enter Nitrogen value (float)">
+            </div>
+
+            <div class="form-group">
+                <label for="P">Phosphorus:</label>
+                <input type="text" id="P" name="P" placeholder="Enter Phosphorus value (float)">
+            </div>
+
+            <div class="form-group">
+                <label for="K">Potassium:</label>
+                <input type="text" id="K" name="K" placeholder="Enter Potassium value (float)">
+            </div>
+        </div>
+
+        <!-- Second Row -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="pH">pH:</label>
+                <input type="text" id="pH" name="pH" placeholder="Enter pH value (float)">
+            </div>
+
+            <div class="form-group">
+                <label for="rainfall">Rainfall:</label>
+                <input type="text" id="rainfall" name="rainfall" placeholder="Enter rainfall value (float)">
+            </div>
+
+            <div class="form-group">
+                <label for="temperature">Temperature:</label>
+                <input type="text" id="temperature" name="temperature" placeholder="Enter temperature value (float)">
+            </div>
+        </div>
+
+        <!-- Third Row -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="Area_in_hectares">Area (in hectares):</label>
+                <input type="text" id="Area_in_hectares" name="Area_in_hectares" placeholder="Enter area value (float)">
+            </div>
+
+            <div class="form-group">
+                <label for="State_Name">State Name:</label>
+                <select id="State_Name" name="State_Name">
+                    <option value="andaman and nicobar islands">Andaman And Nicobar Islands</option>
+                    <option value="andhra pradesh">Andhra Pradesh</option>
+                    <option value="arunachal pradesh">Arunachal Pradesh</option>
+                    <option value="assam">Assam</option>
+                    <option value="bihar">Bihar</option>
+                    <option value="chandigarh">Chandigarh</option>
+                    <option value="chhattisgarh">Chhattisgarh</option>
+                    <option value="dadra and nagar haveli">Dadra And Nagar Haveli</option>
+                    <option value="goa">Goa</option>
+                    <option value="gujarat">Gujarat</option>
+                    <option value="haryana">Haryana</option>
+                    <option value="himachal pradesh">Himachal Pradesh</option>
+                    <option value="jammu and kashmir">Jammu And Kashmir</option>
+                    <option value="jharkhand">Jharkhand</option>
+                    <option value="karnataka">Karnataka</option>
+                    <option value="kerala">Kerala</option>
+                    <option value="madhya pradesh">Madhya Pradesh</option>
+                    <option value="maharashtra">Maharashtra</option>
+                    <option value="manipur">Manipur</option>
+                    <option value="meghalaya">Meghalaya</option>
+                    <option value="mizoram">Mizoram</option>
+                    <option value="nagaland">Nagaland</option>
+                    <option value="odisha">Odisha</option>
+                    <option value="puducherry">Puducherry</option>
+                    <option value="punjab">Punjab</option>
+                    <option value="rajasthan">Rajasthan</option>
+                    <option value="sikkim">Sikkim</option>
+                    <option value="tamil nadu">Tamil Nadu</option>
+                    <option value="telangana">Telangana</option>
+                    <option value="tripura">Tripura</option>
+                    <option value="uttar pradesh">Uttar Pradesh</option>
+                    <option value="uttarakhand">Uttarakhand</option>
+                    <option value="west bengal">West Bengal</option>
+
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="Crop_Type">Crop Type:</label>
+                <select id="Crop_Type" name="Crop_Type">
+                    <option value="kharif">Kharif</option>
+                    <option value="rabi">Rabi</option>
+                    <option value="whole year">Whole Year</option>
+                    <option value="summer">Summer</option>
+
+                </select>
+            </div>
+        </div>
+
+        <!-- Fourth Row -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="Crop">Crop:</label>
+                <select id="Crop" name="Crop">
+                    <option value="rice">Rice</option>
+                    <option value="turmeric">Turmeric</option>
+                    <option value="sweetpotato">Sweetpotato</option>
+                    <option value="moong">Moong</option>
+                    <option value="maize">Maize</option>
+                    <option value="cashewnuts">Cashewnuts</option>
+                    <option value="blackpepper">Blackpepper</option>
+                    <option value="arecanut">Arecanut</option>
+                    <option value="pumpkin">Pumpkin</option>
+                    <option value="cardamom">Cardamom</option>
+                    <option value="soyabean">Soyabean</option>
+                    <option value="banana">Banana</option>
+                    <option value="brinjal">Brinjal</option>
+                    <option value="grapes">Grapes</option>
+                    <option value="orange">Orange</option>
+                    <option value="tapioca">Tapioca</option>
+                    <option value="ladyfinger">Ladyfinger</option>
+                    <option value="barley">Barley</option>
+                    <option value="drumstick">Drumstick</option>
+                    <option value="jute">Jute</option>
+                    <option value="sunflower">Sunflower</option>
+                    <option value="apple">Apple</option>
+                    <option value="jackfruit">Jackfruit</option>
+                    <option value="bottlegourd">Bottlegourd</option>
+                    <option value="cotton">Cotton</option>
+                    <option value="coffee">Coffee</option>
+                    <option value="sesamum">Sesamum</option>
+                    <option value="garlic">Garlic</option>
+                    <option value="potato">Potato</option>
+                    <option value="beetroot">Beetroot</option>
+                    <option value="onion">Onion</option>
+                    <option value="rapeseed">Rapeseed</option>
+                    <option value="horsegram">Horsegram</option>
+                    <option value="ragi">Ragi</option>
+                    <option value="jowar">Jowar</option>
+                    <option value="wheat">Wheat</option>
+                    <option value="coriander">Coriander</option>
+                    <option value="ginger">Ginger</option>
+                    <option value="cabbage">Cabbage</option>
+                    <option value="mango">Mango</option>
+                    <option value="tomato">Tomato</option>
+                    <option value="cucumber">Cucumber</option>
+                    <option value="papaya">Papaya</option>
+                    <option value="ridgegourd">Ridgegourd</option>
+                    <option value="bittergourd">Bittergourd</option>
+                    <option value="cauliflower">Cauliflower</option>
+                    <option value="ashgourd">Ashgourd</option>
+                    <option value="pomegranate">Pomegranate</option>
+                    <option value="watermelon">Watermelon</option>
+                    <option value="carrot">Carrot</option>
+                    <option value="blackgram">Blackgram</option>
+                    <option value="radish">Radish</option>
+                    <option value="pineapple">Pineapple</option>
+
+                </select>
+            </div>
+        </div>
+
+        <div style="clear:both;"></div>
+        <input type="submit" value="Submit">
+    </form>
+
+    <!-- Display prediction result -->
+    {% if final_result %}
+    <h2> {{final_result}}</h2>
+    <h2>{{yield_result}}</h2>
+    {% endif %}
+</body>
+
+</html>
