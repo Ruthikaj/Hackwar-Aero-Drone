@@ -2,7 +2,7 @@
 
 
 
-**This is the project that I am most proud of which we named AI response drone for Search and Rescue. I am from kerala, a southern state in India. In 2018, a flood stuck the state resulted in several deaths and 140 people went missing.**
+In 2018, Kerala experienced one of its worst floods, causing numerous casualties and leaving 140 people missing. India continues to face critical challenges, including natural disasters, climate change, water scarcity, and infrastructure constraints. Inspired by these issues, we—**a team from VIT Vellore, Tamil Nadu**—developed the **AI Response Drone for Search and Rescue** to enhance disaster relief efforts. This AI-powered drone enables efficient search operations in inaccessible areas, improving response times and saving lives. Developed during the **Hackwar Hackathon**, our innovation aims to address India’s pressing emergency response challenges.
 
 **It was very difficult for the search and rescue to go in person to the affected areas in search of stranded people from the flood. We were also part of support team by provided food and supplies to the affected areas. We were able to understand the difficulties in reaching to the affected area even after several days from the incident. These incidents motivated us to develop our project.**
 
