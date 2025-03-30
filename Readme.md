@@ -216,6 +216,9 @@ void loop() {
 
 ![WhatsApp Image 2025-01-23 at 11 17 18_d6771ebb](https://github.com/user-attachments/assets/a11868c6-06b2-465e-8728-8713ea436ab2)
 
+![image](https://github.com/user-attachments/assets/5d3c398d-d6a3-4a17-bd84-d209b8679bfb)
+
+![image](https://github.com/user-attachments/assets/aec49051-f614-4b15-a5c6-76fa8ce91145)
 
 
 
